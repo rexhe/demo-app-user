@@ -1,0 +1,766 @@
+  [1m[36mSQL (0.2ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.1ms)[0m  select sqlite_version(*)
+  [1m[36mSQL (2.7ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [1m[35mSQL (0.1ms)[0m  PRAGMA index_list("schema_migrations")
+  [1m[36mSQL (1.6ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mSQL (0.2ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (0.2ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations"
+Migrating to CreateUsers (20101013225354)
+  [1m[36mSQL (0.6ms)[0m  [1mCREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar(255), "email" varchar(255), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20101013225354')
+  [1m[36mSQL (0.2ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations"
+  [1m[36mSQL (0.1ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.0ms)[0m  PRAGMA index_list("users")
+
+
+Started GET "/users" for 127.0.0.1 at Thu Oct 14 10:50:11 +1100 2010
+  Processing by UsersController#index as HTML
+  [1m[36mSQL (0.4ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mUser Load (12.3ms)[0m  SELECT "users".* FROM "users"
+Rendered users/index.html.erb within layouts/application (3.0ms)
+Completed 200 OK in 93ms (Views: 42.7ms | ActiveRecord: 12.7ms)
+
+
+Started GET "/users/new" for 127.0.0.1 at Thu Oct 14 10:50:16 +1100 2010
+  Processing by UsersController#new as HTML
+Rendered users/_form.html.erb (92.8ms)
+Rendered users/new.html.erb within layouts/application (98.6ms)
+Completed 200 OK in 186ms (Views: 180.8ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users" for 127.0.0.1 at Thu Oct 14 10:50:27 +1100 2010
+  Processing by UsersController#create as HTML
+  Parameters: {"commit"=>"Create User", "authenticity_token"=>"907fP0hmS3tNawkM4St9e0h84g6PD2FK6clyJvBa6mo=", "utf8"=>"✓", "user"=>{"name"=>"rex", "email"=>"rex.he"}}
+  [1m[36mSQL (23.2ms)[0m  [1mINSERT INTO "users" ("created_at", "email", "name", "updated_at") VALUES ('2010-10-13 23:50:28.002249', 'rex.he', 'rex', '2010-10-13 23:50:28.002249')[0m
+Redirected to http://localhost:3000/users/1
+Completed 302 Found in 102ms
+
+
+Started GET "/users/1" for 127.0.0.1 at Thu Oct 14 10:50:28 +1100 2010
+  Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE ("users"."id" = 1) LIMIT 1
+Rendered users/show.html.erb within layouts/application (5.7ms)
+Completed 200 OK in 32ms (Views: 26.2ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/users/1/edit" for 127.0.0.1 at Thu Oct 14 10:50:31 +1100 2010
+  Processing by UsersController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+Rendered users/_form.html.erb (7.6ms)
+Rendered users/edit.html.erb within layouts/application (12.1ms)
+Completed 200 OK in 39ms (Views: 33.2ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/users" for 127.0.0.1 at Thu Oct 14 10:50:32 +1100 2010
+  Processing by UsersController#index as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users"
+Rendered users/index.html.erb within layouts/application (7.0ms)
+Completed 200 OK in 17ms (Views: 12.0ms | ActiveRecord: 0.4ms)
+
+
+Started POST "/users/1" for 127.0.0.1 at Thu Oct 14 10:50:38 +1100 2010
+  Processing by UsersController#destroy as HTML
+  Parameters: {"authenticity_token"=>"907fP0hmS3tNawkM4St9e0h84g6PD2FK6clyJvBa6mo=", "id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE ("users"."id" = 1) LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  DELETE FROM "users" WHERE ("users"."id" = 1)
+Redirected to http://localhost:3000/users
+Completed 302 Found in 13ms
+
+
+Started GET "/users" for 127.0.0.1 at Thu Oct 14 10:50:38 +1100 2010
+  Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users"[0m
+Rendered users/index.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 13ms (Views: 7.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/users/new" for 127.0.0.1 at Thu Oct 14 10:58:43 +1100 2010
+  Processing by UsersController#new as HTML
+Rendered users/_form.html.erb (5.5ms)
+Rendered users/new.html.erb within layouts/application (9.1ms)
+Completed 200 OK in 19ms (Views: 13.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users" for 127.0.0.1 at Thu Oct 14 10:58:49 +1100 2010
+  Processing by UsersController#create as HTML
+  Parameters: {"commit"=>"Create User", "authenticity_token"=>"907fP0hmS3tNawkM4St9e0h84g6PD2FK6clyJvBa6mo=", "utf8"=>"✓", "user"=>{"name"=>"rex", "email"=>"rex.he"}}
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" ("created_at", "email", "name", "updated_at") VALUES ('2010-10-13 23:58:49.609096', 'rex.he', 'rex', '2010-10-13 23:58:49.609096')
+Redirected to http://localhost:3000/users/2
+Completed 302 Found in 15ms
+
+
+Started GET "/users/2" for 127.0.0.1 at Thu Oct 14 10:58:49 +1100 2010
+  Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE ("users"."id" = 2) LIMIT 1[0m
+Rendered users/show.html.erb within layouts/application (5.6ms)
+Completed 200 OK in 17ms (Views: 10.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/users/2/edit" for 127.0.0.1 at Thu Oct 14 10:58:57 +1100 2010
+  Processing by UsersController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE ("users"."id" = 2) LIMIT 1
+Rendered users/_form.html.erb (6.3ms)
+Rendered users/edit.html.erb within layouts/application (10.4ms)
+Completed 200 OK in 22ms (Views: 15.3ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/users" for 127.0.0.1 at Thu Oct 14 10:59:00 +1100 2010
+  Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users"[0m
+Rendered users/index.html.erb within layouts/application (6.6ms)
+Completed 200 OK in 17ms (Views: 11.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/users/new" for 127.0.0.1 at Thu Oct 14 10:59:02 +1100 2010
+  Processing by UsersController#new as HTML
+Rendered users/_form.html.erb (5.5ms)
+Rendered users/new.html.erb within layouts/application (9.1ms)
+Completed 200 OK in 74ms (Views: 14.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users" for 127.0.0.1 at Thu Oct 14 10:59:04 +1100 2010
+  Processing by UsersController#index as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users"
+Rendered users/index.html.erb within layouts/application (7.4ms)
+Completed 200 OK in 19ms (Views: 12.7ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/users/2/edit" for 127.0.0.1 at Thu Oct 14 10:59:06 +1100 2010
+  Processing by UsersController#edit as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE ("users"."id" = 2) LIMIT 1[0m
+Rendered users/_form.html.erb (6.3ms)
+Rendered users/edit.html.erb within layouts/application (10.4ms)
+Completed 200 OK in 77ms (Views: 15.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/users" for 127.0.0.1 at Thu Oct 14 10:59:09 +1100 2010
+  Processing by UsersController#index as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users"
+Rendered users/index.html.erb within layouts/application (6.6ms)
+Completed 200 OK in 17ms (Views: 11.6ms | ActiveRecord: 0.4ms)
+  [1m[36mSQL (0.4ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.2ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (0.1ms)[0m  [1mSELECT "schema_migrations"."version" FROM "schema_migrations"[0m
+Migrating to CreateUsers (20101013225354)
+Migrating to CreateMicroposts (20101014140551)
+  [1m[35mSQL (0.1ms)[0m  select sqlite_version(*)
+  [1m[36mSQL (0.5ms)[0m  [1mCREATE TABLE "microposts" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "content" varchar(255), "user_id" integer, "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ('20101014140551')
+  [1m[36mSQL (0.2ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.1ms)[0m  SELECT "schema_migrations"."version" FROM "schema_migrations"
+  [1m[36mSQL (0.1ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mSQL (0.0ms)[0m  PRAGMA index_list("microposts")
+  [1m[36mSQL (0.0ms)[0m  [1mPRAGMA index_list("users")[0m
+
+
+Started GET "/microposts" for 127.0.0.1 at Fri Oct 15 01:08:08 +1100 2010
+  Processing by MicropostsController#index as HTML
+  [1m[36mSQL (0.4ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mMicropost Load (0.1ms)[0m  SELECT "microposts".* FROM "microposts"
+Rendered microposts/index.html.erb within layouts/application (2.5ms)
+Completed 200 OK in 30ms (Views: 9.0ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/microposts/new" for 127.0.0.1 at Fri Oct 15 01:08:11 +1100 2010
+  Processing by MicropostsController#new as HTML
+Rendered microposts/_form.html.erb (9.6ms)
+Rendered microposts/new.html.erb within layouts/application (14.0ms)
+Completed 200 OK in 23ms (Views: 19.0ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/microposts" for 127.0.0.1 at Fri Oct 15 01:08:17 +1100 2010
+  Processing by MicropostsController#create as HTML
+  Parameters: {"commit"=>"Create Micropost", "micropost"=>{"user_id"=>"res", "content"=>"rex"}, "authenticity_token"=>"/5XNBpNMxFOJGkIMnUwdbc3HeI1tr6eqbRg1id5AJfE=", "utf8"=>"✓"}
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "microposts" ("content", "created_at", "updated_at", "user_id") VALUES ('rex', '2010-10-14 14:08:17.480308', '2010-10-14 14:08:17.480308', 0)[0m
+Redirected to http://localhost:3000/microposts/1
+Completed 302 Found in 20ms
+
+
+Started GET "/microposts/1" for 127.0.0.1 at Fri Oct 15 01:08:17 +1100 2010
+  Processing by MicropostsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mMicropost Load (0.1ms)[0m  SELECT "microposts".* FROM "microposts" WHERE ("microposts"."id" = 1) LIMIT 1
+Rendered microposts/show.html.erb within layouts/application (5.8ms)
+Completed 200 OK in 17ms (Views: 11.1ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/microposts" for 127.0.0.1 at Fri Oct 15 01:08:25 +1100 2010
+  Processing by MicropostsController#index as HTML
+  [1m[36mMicropost Load (0.4ms)[0m  [1mSELECT "microposts".* FROM "microposts"[0m
+Rendered microposts/index.html.erb within layouts/application (7.3ms)
+Completed 200 OK in 18ms (Views: 12.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/microposts/new" for 127.0.0.1 at Fri Oct 15 01:08:45 +1100 2010
+  Processing by MicropostsController#new as HTML
+Rendered microposts/_form.html.erb (5.6ms)
+Rendered microposts/new.html.erb within layouts/application (9.1ms)
+Completed 200 OK in 19ms (Views: 14.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/microposts" for 127.0.0.1 at Fri Oct 15 01:08:55 +1100 2010
+  Processing by MicropostsController#create as HTML
+  Parameters: {"commit"=>"Create Micropost", "micropost"=>{"user_id"=>"rex.he", "content"=>"rex.he"}, "authenticity_token"=>"/5XNBpNMxFOJGkIMnUwdbc3HeI1tr6eqbRg1id5AJfE=", "utf8"=>"✓"}
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "microposts" ("content", "created_at", "updated_at", "user_id") VALUES ('rex.he', '2010-10-14 14:08:55.311324', '2010-10-14 14:08:55.311324', 0)
+Redirected to http://localhost:3000/microposts/2
+Completed 302 Found in 15ms
+
+
+Started GET "/microposts/2" for 127.0.0.1 at Fri Oct 15 01:08:55 +1100 2010
+  Processing by MicropostsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mMicropost Load (0.1ms)[0m  [1mSELECT "microposts".* FROM "microposts" WHERE ("microposts"."id" = 2) LIMIT 1[0m
+Rendered microposts/show.html.erb within layouts/application (6.2ms)
+Completed 200 OK in 18ms (Views: 11.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/microposts" for 127.0.0.1 at Fri Oct 15 01:09:00 +1100 2010
+  Processing by MicropostsController#index as HTML
+  [1m[35mMicropost Load (0.4ms)[0m  SELECT "microposts".* FROM "microposts"
+Rendered microposts/index.html.erb within layouts/application (8.3ms)
+Completed 200 OK in 77ms (Views: 71.8ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/users" for 127.0.0.1 at Fri Oct 15 01:09:13 +1100 2010
+  Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users"[0m
+Rendered users/index.html.erb within layouts/application (6.6ms)
+Completed 200 OK in 17ms (Views: 11.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/users/2" for 127.0.0.1 at Fri Oct 15 01:09:15 +1100 2010
+  Processing by UsersController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" WHERE ("users"."id" = 2) LIMIT 1
+Rendered users/show.html.erb within layouts/application (7.7ms)
+Completed 200 OK in 19ms (Views: 13.1ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/users" for 127.0.0.1 at Fri Oct 15 01:09:21 +1100 2010
+  Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users"[0m
+Rendered users/index.html.erb within layouts/application (6.8ms)
+Completed 200 OK in 17ms (Views: 11.7ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/users/new" for 127.0.0.1 at Fri Oct 15 01:09:23 +1100 2010
+  Processing by UsersController#new as HTML
+Rendered users/_form.html.erb (70.4ms)
+Rendered users/new.html.erb within layouts/application (74.4ms)
+Completed 200 OK in 84ms (Views: 79.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users" for 127.0.0.1 at Fri Oct 15 01:09:31 +1100 2010
+  Processing by UsersController#create as HTML
+  Parameters: {"commit"=>"Create User", "authenticity_token"=>"/5XNBpNMxFOJGkIMnUwdbc3HeI1tr6eqbRg1id5AJfE=", "utf8"=>"✓", "user"=>{"name"=>"meimei", "email"=>"e"}}
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "users" ("created_at", "email", "name", "updated_at") VALUES ('2010-10-14 14:09:31.695320', 'e', 'meimei', '2010-10-14 14:09:31.695320')
+Redirected to http://localhost:3000/users/3
+Completed 302 Found in 15ms
+
+
+Started GET "/users/3" for 127.0.0.1 at Fri Oct 15 01:09:31 +1100 2010
+  Processing by UsersController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users" WHERE ("users"."id" = 3) LIMIT 1[0m
+Rendered users/show.html.erb within layouts/application (6.0ms)
+Completed 200 OK in 18ms (Views: 11.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/microposts" for 127.0.0.1 at Fri Oct 15 01:09:37 +1100 2010
+  Processing by MicropostsController#index as HTML
+  [1m[35mMicropost Load (0.4ms)[0m  SELECT "microposts".* FROM "microposts"
+Rendered microposts/index.html.erb within layouts/application (8.2ms)
+Completed 200 OK in 19ms (Views: 13.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/microposts/new" for 127.0.0.1 at Fri Oct 15 01:09:40 +1100 2010
+  Processing by MicropostsController#new as HTML
+Rendered microposts/_form.html.erb (6.2ms)
+Rendered microposts/new.html.erb within layouts/application (9.8ms)
+Completed 200 OK in 19ms (Views: 14.9ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/microposts" for 127.0.0.1 at Fri Oct 15 01:09:46 +1100 2010
+  Processing by MicropostsController#create as HTML
+  Parameters: {"commit"=>"Create Micropost", "micropost"=>{"user_id"=>"meimei", "content"=>"meimei"}, "authenticity_token"=>"/5XNBpNMxFOJGkIMnUwdbc3HeI1tr6eqbRg1id5AJfE=", "utf8"=>"✓"}
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "microposts" ("content", "created_at", "updated_at", "user_id") VALUES ('meimei', '2010-10-14 14:09:46.326562', '2010-10-14 14:09:46.326562', 0)[0m
+Redirected to http://localhost:3000/microposts/3
+Completed 302 Found in 14ms
+
+
+Started GET "/microposts/3" for 127.0.0.1 at Fri Oct 15 01:09:46 +1100 2010
+  Processing by MicropostsController#show as HTML
+  Parameters: {"id"=>"3"}
+  [1m[35mMicropost Load (0.1ms)[0m  SELECT "microposts".* FROM "microposts" WHERE ("microposts"."id" = 3) LIMIT 1
+Rendered microposts/show.html.erb within layouts/application (5.7ms)
+Completed 200 OK in 17ms (Views: 10.8ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/microposts" for 127.0.0.1 at Fri Oct 15 01:10:45 +1100 2010
+  Processing by MicropostsController#index as HTML
+  [1m[36mMicropost Load (0.4ms)[0m  [1mSELECT "microposts".* FROM "microposts"[0m
+Rendered microposts/index.html.erb within layouts/application (8.9ms)
+Completed 200 OK in 20ms (Views: 13.7ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/microposts/new" for 127.0.0.1 at Fri Oct 15 01:10:47 +1100 2010
+  Processing by MicropostsController#new as HTML
+Rendered microposts/_form.html.erb (6.1ms)
+Rendered microposts/new.html.erb within layouts/application (9.7ms)
+Completed 200 OK in 19ms (Views: 14.6ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/microposts" for 127.0.0.1 at Fri Oct 15 01:10:52 +1100 2010
+  Processing by MicropostsController#create as HTML
+  Parameters: {"commit"=>"Create Micropost", "micropost"=>{"user_id"=>"3", "content"=>"12123"}, "authenticity_token"=>"/5XNBpNMxFOJGkIMnUwdbc3HeI1tr6eqbRg1id5AJfE=", "utf8"=>"✓"}
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "microposts" ("content", "created_at", "updated_at", "user_id") VALUES ('12123', '2010-10-14 14:10:52.635963', '2010-10-14 14:10:52.635963', 3)
+Redirected to http://localhost:3000/microposts/4
+Completed 302 Found in 14ms
+
+
+Started GET "/microposts/4" for 127.0.0.1 at Fri Oct 15 01:10:52 +1100 2010
+  Processing by MicropostsController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mMicropost Load (0.1ms)[0m  [1mSELECT "microposts".* FROM "microposts" WHERE ("microposts"."id" = 4) LIMIT 1[0m
+Rendered microposts/show.html.erb within layouts/application (5.5ms)
+Completed 200 OK in 17ms (Views: 10.6ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/microposts" for 127.0.0.1 at Fri Oct 15 01:11:01 +1100 2010
+  Processing by MicropostsController#index as HTML
+  [1m[35mMicropost Load (0.4ms)[0m  SELECT "microposts".* FROM "microposts"
+Rendered microposts/index.html.erb within layouts/application (10.0ms)
+Completed 200 OK in 21ms (Views: 15.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/microposts/new" for 127.0.0.1 at Fri Oct 15 01:11:35 +1100 2010
+  Processing by MicropostsController#new as HTML
+Rendered microposts/_form.html.erb (5.6ms)
+Rendered microposts/new.html.erb within layouts/application (9.5ms)
+Completed 200 OK in 19ms (Views: 14.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/microposts" for 127.0.0.1 at Fri Oct 15 01:11:37 +1100 2010
+  Processing by MicropostsController#create as HTML
+  Parameters: {"commit"=>"Create Micropost", "micropost"=>{"user_id"=>"", "content"=>""}, "authenticity_token"=>"/5XNBpNMxFOJGkIMnUwdbc3HeI1tr6eqbRg1id5AJfE=", "utf8"=>"✓"}
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "microposts" ("content", "created_at", "updated_at", "user_id") VALUES ('', '2010-10-14 14:11:37.208418', '2010-10-14 14:11:37.208418', NULL)[0m
+Redirected to http://localhost:3000/microposts/5
+Completed 302 Found in 14ms
+
+
+Started GET "/microposts/5" for 127.0.0.1 at Fri Oct 15 01:11:37 +1100 2010
+  Processing by MicropostsController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[35mMicropost Load (0.1ms)[0m  SELECT "microposts".* FROM "microposts" WHERE ("microposts"."id" = 5) LIMIT 1
+Rendered microposts/show.html.erb within layouts/application (5.8ms)
+Completed 200 OK in 76ms (Views: 70.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/microposts" for 127.0.0.1 at Fri Oct 15 01:11:39 +1100 2010
+  Processing by MicropostsController#index as HTML
+  [1m[36mMicropost Load (0.4ms)[0m  [1mSELECT "microposts".* FROM "microposts"[0m
+Rendered microposts/index.html.erb within layouts/application (11.0ms)
+Completed 200 OK in 22ms (Views: 16.4ms | ActiveRecord: 0.4ms)
+  [1m[36mSQL (0.4ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+  [1m[36mMicropost Load (0.2ms)[0m  [1mSELECT "microposts".* FROM "microposts" WHERE ("microposts".user_id = 2)[0m
+  [1m[35mSQL (0.3ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+  [1m[36mSQL (0.3ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" LIMIT 1
+
+
+Started GET "/users.xml" for 127.0.0.1 at Mon Oct 25 09:45:09 +1100 2010
+  Processing by UsersController#index as XML
+  [1m[36mSQL (0.5ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mUser Load (15.4ms)[0m  SELECT "users".* FROM "users"
+Completed 200 OK in 240ms (Views: 112.1ms | ActiveRecord: 15.8ms)
+
+
+Started GET "/users.xml" for 127.0.0.1 at Mon Oct 25 09:46:07 +1100 2010
+  Processing by UsersController#index as XML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users"[0m
+Completed 200 OK in 15ms (Views: 7.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/users.xml" for 127.0.0.1 at Mon Oct 25 09:46:08 +1100 2010
+  Processing by UsersController#index as XML
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users"
+Completed 200 OK in 15ms (Views: 7.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/users.xml" for 127.0.0.1 at Mon Oct 25 09:46:09 +1100 2010
+  Processing by UsersController#index as XML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users"[0m
+Completed 200 OK in 15ms (Views: 7.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/users.xml" for 127.0.0.1 at Mon Oct 25 09:46:18 +1100 2010
+  Processing by UsersController#index as XML
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users"
+Completed 200 OK in 75ms (Views: 7.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/users.xml" for 127.0.0.1 at Mon Oct 25 09:46:19 +1100 2010
+  Processing by UsersController#index as XML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users"[0m
+Completed 200 OK in 15ms (Views: 7.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/users.xml" for 127.0.0.1 at Mon Oct 25 09:46:20 +1100 2010
+  Processing by UsersController#index as XML
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users"
+Completed 200 OK in 14ms (Views: 7.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/users.xml" for 127.0.0.1 at Mon Oct 25 09:47:05 +1100 2010
+  Processing by UsersController#index as XML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users"[0m
+Completed 200 OK in 15ms (Views: 7.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/users.xml" for 127.0.0.1 at Mon Oct 25 09:47:05 +1100 2010
+  Processing by UsersController#index as XML
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users"
+Completed 200 OK in 22ms (Views: 8.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/users.xml" for 127.0.0.1 at Mon Oct 25 09:47:05 +1100 2010
+  Processing by UsersController#index as XML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users"[0m
+Completed 200 OK in 15ms (Views: 7.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/users.xml" for 127.0.0.1 at Mon Oct 25 09:47:06 +1100 2010
+  Processing by UsersController#index as XML
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users"
+Completed 200 OK in 15ms (Views: 7.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/users.xml" for 127.0.0.1 at Mon Oct 25 09:47:06 +1100 2010
+  Processing by UsersController#index as XML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users"[0m
+Completed 200 OK in 14ms (Views: 7.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/users.xml" for 127.0.0.1 at Mon Oct 25 09:47:06 +1100 2010
+  Processing by UsersController#index as XML
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users"
+Completed 200 OK in 15ms (Views: 7.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/users.xml" for 127.0.0.1 at Mon Oct 25 09:47:06 +1100 2010
+  Processing by UsersController#index as XML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users"[0m
+Completed 200 OK in 77ms (Views: 69.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/users.xml" for 127.0.0.1 at Mon Oct 25 09:47:06 +1100 2010
+  Processing by UsersController#index as XML
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users"
+Completed 200 OK in 15ms (Views: 7.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/users.xml" for 127.0.0.1 at Mon Oct 25 09:47:06 +1100 2010
+  Processing by UsersController#index as XML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users"[0m
+Completed 200 OK in 15ms (Views: 7.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/users.xml" for 127.0.0.1 at Mon Oct 25 09:47:06 +1100 2010
+  Processing by UsersController#index as XML
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users"
+Completed 200 OK in 15ms (Views: 7.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/users.xml" for 127.0.0.1 at Mon Oct 25 09:47:07 +1100 2010
+  Processing by UsersController#index as XML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users"[0m
+Completed 200 OK in 15ms (Views: 7.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/users.xml" for 127.0.0.1 at Mon Oct 25 09:47:07 +1100 2010
+  Processing by UsersController#index as XML
+  [1m[35mUser Load (0.6ms)[0m  SELECT "users".* FROM "users"
+Completed 200 OK in 80ms (Views: 8.2ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/users.xml" for 127.0.0.1 at Mon Oct 25 09:47:07 +1100 2010
+  Processing by UsersController#index as XML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users"[0m
+Completed 200 OK in 15ms (Views: 7.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/users.xml" for 127.0.0.1 at Mon Oct 25 09:47:07 +1100 2010
+  Processing by UsersController#index as XML
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users"
+Completed 200 OK in 15ms (Views: 7.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/users.xml" for 127.0.0.1 at Mon Oct 25 09:47:07 +1100 2010
+  Processing by UsersController#index as XML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users"[0m
+Completed 200 OK in 15ms (Views: 7.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/users.xml" for 127.0.0.1 at Mon Oct 25 09:47:07 +1100 2010
+  Processing by UsersController#index as XML
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users"
+Completed 200 OK in 15ms (Views: 7.6ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/users.xml" for 127.0.0.1 at Mon Oct 25 09:52:16 +1100 2010
+  Processing by UsersController#index as XML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users"[0m
+Completed 200 OK in 13ms (Views: 5.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/users.json" for 127.0.0.1 at Mon Oct 25 09:52:25 +1100 2010
+  Processing by UsersController#index as JSON
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users"
+Completed 406 Not Acceptable in 8ms
+
+
+Started GET "/users.json" for 127.0.0.1 at Mon Oct 25 09:52:29 +1100 2010
+  Processing by UsersController#index as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users"[0m
+Completed 406 Not Acceptable in 7ms
+
+
+Started GET "/users.json" for 127.0.0.1 at Mon Oct 25 09:52:30 +1100 2010
+  Processing by UsersController#index as JSON
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users"
+Completed 406 Not Acceptable in 7ms
+
+
+Started GET "/users.xml" for 127.0.0.1 at Mon Oct 25 09:52:48 +1100 2010
+  Processing by UsersController#index as XML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users"[0m
+Completed 200 OK in 15ms (Views: 7.0ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/users.xml" for 127.0.0.1 at Mon Oct 25 09:52:52 +1100 2010
+  Processing by UsersController#index as XML
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users"
+Completed 200 OK in 14ms (Views: 7.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/users.xml" for 127.0.0.1 at Mon Oct 25 09:52:53 +1100 2010
+  Processing by UsersController#index as XML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users"[0m
+Completed 200 OK in 15ms (Views: 7.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/users.xml" for 127.0.0.1 at Mon Oct 25 09:53:35 +1100 2010
+  Processing by UsersController#index as XML
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users"
+Completed   in 34ms
+
+ActionView::MissingTemplate (Missing template users/index with {:locale=>[:en, :en], :handlers=>[:rjs, :rhtml, :builder, :rxml, :erb], :formats=>[:xml]} in view paths "/Users/rexhe/Sites/demo_app/app/views"):
+  app/controllers/users_controller.rb:9:in `index'
+  app/controllers/users_controller.rb:7:in `index'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.0/lib/action_dispatch/middleware/templates/rescues/missing_template.erb within rescues/layout (0.6ms)
+
+
+Started GET "/users.xml" for 127.0.0.1 at Mon Oct 25 09:53:37 +1100 2010
+  Processing by UsersController#index as XML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users"[0m
+Completed   in 11ms
+
+ActionView::MissingTemplate (Missing template users/index with {:locale=>[:en, :en], :handlers=>[:rjs, :rhtml, :builder, :rxml, :erb], :formats=>[:xml]} in view paths "/Users/rexhe/Sites/demo_app/app/views"):
+  app/controllers/users_controller.rb:9:in `index'
+  app/controllers/users_controller.rb:7:in `index'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.0/lib/action_dispatch/middleware/templates/rescues/missing_template.erb within rescues/layout (0.6ms)
+
+
+Started GET "/users.xml" for 127.0.0.1 at Mon Oct 25 09:53:38 +1100 2010
+  Processing by UsersController#index as XML
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users"
+Completed   in 74ms
+
+ActionView::MissingTemplate (Missing template users/index with {:locale=>[:en, :en], :handlers=>[:rjs, :rhtml, :builder, :rxml, :erb], :formats=>[:xml]} in view paths "/Users/rexhe/Sites/demo_app/app/views"):
+  app/controllers/users_controller.rb:9:in `index'
+  app/controllers/users_controller.rb:7:in `index'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.0/lib/action_dispatch/middleware/templates/rescues/missing_template.erb within rescues/layout (0.6ms)
+
+
+Started GET "/users.JASON" for 127.0.0.1 at Mon Oct 25 09:53:51 +1100 2010
+  Processing by UsersController#index as 
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users"[0m
+Completed 406 Not Acceptable in 7ms
+
+
+Started GET "/users.JASON" for 127.0.0.1 at Mon Oct 25 09:53:55 +1100 2010
+  Processing by UsersController#index as 
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users"
+Completed 406 Not Acceptable in 8ms
+
+
+Started GET "/users.xml" for 127.0.0.1 at Tue Oct 26 10:28:35 +1100 2010
+  Processing by UsersController#index as XML
+  [1m[36mSQL (0.4ms)[0m  [1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [1m[35mUser Load (16.6ms)[0m  SELECT "users".* FROM "users"
+Completed   in 182ms
+
+ActionView::MissingTemplate (Missing template users/index with {:locale=>[:en, :en], :handlers=>[:rjs, :rhtml, :builder, :rxml, :erb], :formats=>[:xml]} in view paths "/Users/rexhe/Sites/demo_app_users/app/views"):
+  app/controllers/users_controller.rb:9:in `index'
+  app/controllers/users_controller.rb:7:in `index'
+
+Rendered /Library/Ruby/Gems/1.8/gems/actionpack-3.0.0/lib/action_dispatch/middleware/templates/rescues/missing_template.erb within rescues/layout (0.8ms)
+
+
+Started GET "/users" for 127.0.0.1 at Tue Oct 26 10:28:46 +1100 2010
+  Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users"[0m
+Rendered users/index.html.erb within layouts/application (9.9ms)
+Completed 200 OK in 55ms (Views: 47.3ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/users.jason" for 127.0.0.1 at Tue Oct 26 10:29:05 +1100 2010
+  Processing by UsersController#index as 
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users"
+Completed 406 Not Acceptable in 9ms
+
+
+Started GET "/users.JASON" for 127.0.0.1 at Tue Oct 26 10:29:11 +1100 2010
+  Processing by UsersController#index as 
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users"[0m
+Completed 406 Not Acceptable in 70ms
+
+
+Started GET "/users.xml" for 127.0.0.1 at Tue Oct 26 10:29:27 +1100 2010
+  Processing by UsersController#index as XML
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users"
+Completed 200 OK in 125ms (Views: 116.8ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/users.xml" for 127.0.0.1 at Tue Oct 26 10:31:59 +1100 2010
+  Processing by UsersController#index as XML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users"[0m
+Completed 200 OK in 16ms (Views: 7.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/users.xml" for 127.0.0.1 at Tue Oct 26 10:32:01 +1100 2010
+  Processing by UsersController#index as XML
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users"
+Completed 200 OK in 15ms (Views: 7.3ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/users.xml" for 127.0.0.1 at Tue Oct 26 10:32:01 +1100 2010
+  Processing by UsersController#index as XML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users"[0m
+Completed 200 OK in 78ms (Views: 7.4ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/users.xml" for 127.0.0.1 at Tue Oct 26 10:32:03 +1100 2010
+  Processing by UsersController#index as XML
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users"
+Completed 200 OK in 16ms (Views: 7.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/users.xml" for 127.0.0.1 at Tue Oct 26 10:32:04 +1100 2010
+  Processing by UsersController#index as XML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users"[0m
+Completed 200 OK in 15ms (Views: 7.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/users.xml" for 127.0.0.1 at Tue Oct 26 10:32:04 +1100 2010
+  Processing by UsersController#index as XML
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users"
+Completed 200 OK in 14ms (Views: 7.3ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/users.xml" for 127.0.0.1 at Tue Oct 26 10:32:04 +1100 2010
+  Processing by UsersController#index as XML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users"[0m
+Completed 200 OK in 24ms (Views: 8.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/users.xml" for 127.0.0.1 at Tue Oct 26 10:32:05 +1100 2010
+  Processing by UsersController#index as XML
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users"
+Completed 200 OK in 15ms (Views: 7.5ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/users.xml" for 127.0.0.1 at Tue Oct 26 10:32:05 +1100 2010
+  Processing by UsersController#index as XML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users"[0m
+Completed 200 OK in 15ms (Views: 7.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/users.xml" for 127.0.0.1 at Tue Oct 26 10:32:05 +1100 2010
+  Processing by UsersController#index as XML
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users"
+Completed 200 OK in 16ms (Views: 7.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/users.xml" for 127.0.0.1 at Tue Oct 26 10:32:05 +1100 2010
+  Processing by UsersController#index as XML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users"[0m
+Completed 200 OK in 15ms (Views: 7.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/users.xml" for 127.0.0.1 at Tue Oct 26 10:32:05 +1100 2010
+  Processing by UsersController#index as XML
+  [1m[35mUser Load (0.4ms)[0m  SELECT "users".* FROM "users"
+Completed 200 OK in 81ms (Views: 73.7ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/users.json" for 127.0.0.1 at Tue Oct 26 10:32:56 +1100 2010
+  Processing by UsersController#index as JSON
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users"[0m
+Completed 200 OK in 15ms (Views: 7.4ms | ActiveRecord: 0.4ms)
